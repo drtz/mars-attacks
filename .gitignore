@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Image Cache ###
+/image-cache/
+
+### Mac Indexing ###
+.DS_Store
