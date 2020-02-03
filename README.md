@@ -13,10 +13,10 @@ Images for a [small set of dates](https://github.com/drtz/mars-attacks/blob/mast
 
 A live demo of this application is running on a shared Kubernetes cluster in [Kubesail](https://kubesail.com/).
 
-http://marsattacks.drtz.net/photos/?date=02/27/17
-http://marsattacks.drtz.net/photos/?date=June%202,%202018
-http://marsattacks.drtz.net/photos/?date=Jul-13-2016
-http://marsattacks.drtz.net/photos/?date=April%202031,%202018
+- http://marsattacks.drtz.net/photos/?date=02/27/17
+- http://marsattacks.drtz.net/photos/?date=June%202,%202018
+- http://marsattacks.drtz.net/photos/?date=Jul-13-2016
+- http://marsattacks.drtz.net/photos/?date=April%202031,%202018
 
 ## Future Enhancements
 
