@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marsattacks
+spec:
+  selector:
+    matchLabels:
+      app: marsattacks
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: marsattacks
+    spec:
+      volumes:
+        - name: image-cache
+          persistentVolumeClaim:
+            claimName: marsattacks-image-cache
+      containers:
+        - name: marsattacks
+          image: docker.io/drtz/marsattacks:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - mountPath: /app/image-cache
+              name: image-cache
+          env:
+            - name: NASA_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: marsattacks
+                  key: nasa-api-key
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 1
+              memory: 256Mi
+

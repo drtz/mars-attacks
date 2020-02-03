@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: marsattacks-drtz-net
+spec:
+  rules:
+  - host: marsattacks.drtz.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: marsattacks
+          servicePort: http
