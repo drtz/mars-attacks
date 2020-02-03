@@ -5,8 +5,8 @@ plugins {
 }
 
 group = 'net.drtz'
-version = '0.0.1'
-sourceCompatibility = '1.8'
+version = '0.0.3'
+sourceCompatibility = '1.9'
 
 repositories {
     jcenter()

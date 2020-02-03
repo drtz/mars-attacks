@@ -20,11 +20,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
-import java.io.IOException;
 
 @Controller
 public class MarsAttacksController {
@@ -43,7 +40,11 @@ public class MarsAttacksController {
         this.dateNormalizer = new DateNormalizer(DateTimeFormatter.ISO_LOCAL_DATE);
         this.logger = LoggerFactory.getLogger(MarsAttacksController.class);
 
-        this.preFetchImages();
+        try {
+            this.preFetchImages();
+        } catch (Exception ex) {
+            this.logger.error("failed pre-fetching images", ex);
+        }
     }
 
     @GetMapping("/photos/")
@@ -71,18 +72,17 @@ public class MarsAttacksController {
     }
 
     private void preFetchImages() throws IOException {
-        File preloadDatesFile = new ClassPathResource("preload-dates.txt").getFile();
-        FileReader reader = new FileReader(preloadDatesFile);
-        BufferedReader br = new BufferedReader(reader);
+        InputStream fileStream = new ClassPathResource("preload-dates.txt").getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(fileStream, "UTF-8"));
 
         String line;
         while ((line = br.readLine()) != null) {
             try {
                 this.getImageForDate(line);
-            } catch (DateParseException e) {
-                this.logger.error("invalid date read from preload dates file: " + line);
-            } catch (PhotosNotFoundException e) {
-                this.logger.warn("no photos found for preloaded dates: " + line);
+            } catch (DateParseException ex) {
+                this.logger.error("invalid date read from preload dates file: " + line, ex);
+            } catch (PhotosNotFoundException ex) {
+                this.logger.warn("no photos found for preloaded dates: " + line, ex);
             }
             this.logger.info("pre-cached image for date: " + line);
         }
