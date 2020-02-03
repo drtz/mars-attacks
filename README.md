@@ -36,8 +36,9 @@ There's no frontend to this application, so it's not really user-friendly at the
 
 ### Non-Blocking IO
 
-IO operations in this app will block threads from handling concurrent requests. Each instance of
-the application will be able to handle a lot more traffic 
+IO operations in this app will block the application process from being able to handle concurrent
+requests. Each instance of the application would be able to handle a lot more traffic with a
+non-blocking server architecture.
 
 ## Building
 
