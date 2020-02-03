@@ -22,8 +22,8 @@ A live demo of this application is running on a shared Kubernetes cluster in [Ku
 
 ### Testing
 
-I did the bare minimum for testing just to wrap my head around the basics of JUnit. Extensive unit
-testing and load testing would be ideal for a real-world deployment.
+I did the bare minimum for testing just to wrap my head around the very basics of JUnit. Extensive
+unit testing and load testing would be ideal for a real-world deployment.
 
 ### Cache NASA API Responses
 
