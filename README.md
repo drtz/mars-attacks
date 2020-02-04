@@ -13,10 +13,7 @@ Images for a [small set of dates](https://github.com/drtz/mars-attacks/blob/mast
 
 A live demo of this application is running on a shared Kubernetes cluster in [Kubesail](https://kubesail.com/).
 
-- http://marsattacks.drtz.net/photos/?date=02/27/17
-- http://marsattacks.drtz.net/photos/?date=June%202,%202018
-- http://marsattacks.drtz.net/photos/?date=Jul-13-2016
-- http://marsattacks.drtz.net/photos/?date=April%202031,%202018
+[See the live Demo](http://marsattacks.drtz.net/)
 
 ## Future Enhancements
 
@@ -29,10 +26,6 @@ unit testing and load testing would be ideal for a real-world deployment.
 
 The NASA API seems to be pretty slow to respond. Since we're dealing with historical data from a
 Mars rover that's no longer active, caching the data retrieved from NASA should be safe.
-
-### Frontend App
-
-There's no frontend to this application, so it's not really user-friendly at the moment. A nice UI would make it much more palettable.
 
 ### Non-Blocking IO
 
@@ -67,7 +60,7 @@ NASA_API_KEY=<api key> ./gradlew bootRun
 ### Docker
 
 ```
-docker run -p 8080:8080 --env NASA_API_KEY=<api key> --rm drtz/marsattacks:latest
+docker run -p 8080:8080 --env NASA_API_KEY=<api key> --rm drtz/marsattacks:$(./gradlew properties | grep version | sed 's/version: //')
 ```
 
 ## Deploying
@@ -83,8 +76,3 @@ kubectl apply -f deploy/deployment.yaml
 kubectl apply -f deploy/service.yaml
 kubectl apply -f deploy/ingress.yaml
 ```
-
-## Disclaimer
-
-This is my first attempt at building a Java web server. I make no claim that this is exemplary in
-any way, shape, or form.

@@ -1,0 +1,11 @@
+.App {
+    margin: 4em 6em;
+    display: flex;
+    flex-direction: column;
+}
+
+@media all and (max-width: 750px) {
+    .App {
+        margin: 0.5em;
+    }
+}

@@ -1,0 +1,51 @@
+.DateInput {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2em;
+}
+
+.DateInput__input, .DateInput__input--disabled {
+    border: 1px solid gray;
+    font-size: inherit;
+    border-radius: 0.125em;
+    padding: 0.25em 0.125em;
+    min-width: 6em;
+    flex-grow: 1000;
+    flex-shrink: 1;
+    flex-basis: 6em;
+}
+
+.DateInput__input--disabled {
+    border-color: lightgray;
+}
+
+.DateInput__button, .DateInput__button--disabled {
+    font-size: inherit;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0.125em;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 6em;
+}
+
+.DateInput__button--disabled {
+    background-color: lightgray;
+    color: darkgray;
+}
+
+.DateInput__button:disabled {
+}
+
+.DateInput__button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.DateInput__button:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    background-color: blue;
+    color: white;
+}

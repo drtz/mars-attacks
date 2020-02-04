@@ -1,0 +1,7 @@
+.Image {
+    max-width: 100%;
+}
+
+.Image--hidden {
+    display: none;
+}

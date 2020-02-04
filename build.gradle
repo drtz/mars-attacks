@@ -1,11 +1,12 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id "com.github.node-gradle.node" version "2.2.1"
 	id 'java'
 }
 
 group = 'net.drtz'
-version = '0.0.3'
+version = '0.0.4'
 sourceCompatibility = '1.9'
 
 repositories {
@@ -25,4 +26,38 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+// Read more about how to configure the plugin from
+// https://github.com/srs/gradle-node-plugin/blob/master/docs/node.md
+node {
+  download = true
+
+  // Set the work directory for unpacking node
+  workDir = file("${project.buildDir}/nodejs")
+
+  // Set the work directory for NPM
+  npmWorkDir = file("${project.buildDir}/npm")
+}
+
+// gradle npm build from https://blog.indrek.io/articles/serving-react-apps-from-spring-boot/
+task appNpmInstall(type: NpmTask) {
+  description = "Installs all dependencies from package.json"
+  workingDir = file("${project.projectDir}/frontend")
+  args = ["install"]
+}
+
+task appNpmBuild(type: NpmTask) {
+  description = "Builds production version of the webapp"
+  workingDir = file("${project.projectDir}/frontend")
+  args = ["run", "build"]
+}
+
+task copyWebApp(type: Copy) {
+  from 'frontend/build'
+  into 'build/resources/main/static/.'
+}
+
+appNpmBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn appNpmBuild
+compileJava.dependsOn copyWebApp
 
