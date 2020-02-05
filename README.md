@@ -22,6 +22,13 @@ A live demo of this application is running on a shared Kubernetes cluster in [Ku
 I did the bare minimum for testing just to wrap my head around the very basics of JUnit. Extensive
 unit testing and load testing would be ideal for a real-world deployment.
 
+### More Sensible API
+
+I went with my first instinct for the API design, which was to build it such that, given a date, the
+server would respond with a single image. In hidsight, since there can be multiple images for a
+single day, returning a list of image URLs that could be fetched by the client would have been more
+sensible.
+
 ### Cache NASA API Responses
 
 The NASA API seems to be pretty slow to respond. Since we're dealing with historical data from a
@@ -29,9 +36,9 @@ Mars rover that's no longer active, caching the data retrieved from NASA should 
 
 ### Non-Blocking IO
 
-IO operations in this app will block the application process from being able to handle concurrent
-requests. Each instance of the application would be able to handle a lot more traffic with a
-non-blocking server architecture.
+Hopefully the title of this section speaks for itself. IO operations will block the application
+process from being able to handle concurrent requests. Each instance of the application would
+be able to handle a lot more traffic with a non-blocking server architecture.
 
 ## Building
 
